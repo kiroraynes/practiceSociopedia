@@ -1,5 +1,5 @@
 const LoginPage = () => {
-    return (<div>homepage</div>);
+    return (<div>loginPage</div>);
 
 }
 
