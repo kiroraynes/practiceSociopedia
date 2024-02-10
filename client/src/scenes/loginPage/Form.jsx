@@ -11,7 +11,7 @@ import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
 import * as yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { UseDispatch, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { setLogin } from "state";
 import Dropzone from "react-dropzone";
 import FlexBetween from "components/FlexBetween";
@@ -40,6 +40,11 @@ const initialValuesRegister = {
     occupation: "",
     picture: "",
 }
+
+const initialValuesLogin = {
+    email: "",
+    password: "",
+};
 
 const Form = () => {
     const [pageType, setPageType] = useState("login");
@@ -94,14 +99,14 @@ const Form = () => {
         }
     }
 
-    const handleFormSubmit = async(values, onSumbitProps) => {
+    const handleFormSubmit = async(values, onSubmitProps) => {
         if (isLogin) await login(values, onSubmitProps);
         if (isRegister) await register(values, onSubmitProps);
     }
     return(
         <Formik
             onSubmit={handleFormSubmit}
-            initialValues={isLogin ? intialValuesLogin: initialValuesRegister}
+            initialValues={isLogin ? initialValuesLogin: initialValuesRegister}
             validationSchema={isLogin ? loginSchema : registerSchema}
         >
             {({
