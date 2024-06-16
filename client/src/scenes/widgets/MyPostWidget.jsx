@@ -26,7 +26,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setPosts } from "state";
 
-const MyPostWidget = ({ picturePath }) => {
+const MyPostWidget = ({ picturePath, isNotOwnProfile }) => {
     const dispatch = useDispatch();
     const [isImage, setIsImage] = useState(false);
     const [image, setImage] = useState(null);
@@ -57,13 +57,14 @@ const MyPostWidget = ({ picturePath }) => {
         setImage(null);
         setPost("");
     };
+    const placeholder = isNotOwnProfile ? "What's on your mind for this user..." : "What's on your mind...";
 
     return (
         <WidgetWrapper>
             <FlexBetween gap="1.5rem">
                 <UserImage image={picturePath} />
                 <InputBase
-                    placeholder="What's on your mind..."
+                    placeholder={placeholder}
                     onChange={(e) => setPost(e.target.value)}
                     value={post}
                     sx={{
